@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>FsMetastore.Persistence</AssemblyName>
+    <RootNamespace>FsMetastore.Persistence</RootNamespace>
+    <AssemblyVersion>1.0.0</AssemblyVersion>
+    <Version>1.0.0</Version>
+    <NuspecFile>../FsMetastore.nuspec</NuspecFile>
+    <PackageId>FsMetastore</PackageId>
+    <Title>FsMetastore</Title>
+    <Authors>Michael Farr</Authors>
+    <Copyright>Michael Farr</Copyright>
+    <RepositoryType>git</RepositoryType>
+    <Description>
+      Scans filesystem, stores basic metadata in SQL and scan sends changes in space efficient binary format.
+    </Description>
+    <NuspecProperties>id=$(PackageId);version=$(Version);title=$(Title);authors=$(Authors);description=$(description);configuration=$(configuration)</NuspecProperties>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <None Remove="Readme.md" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="3.1.8" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.8" />
+    <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
+    <PackageReference Include="System.Data.HashFunction.CityHash" Version="2.0.0" />
+    <PackageReference Include="System.Text.Json" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FsMetastore.Model\FsMetastore.Model.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package >
+    <metadata>
+        <id>$id$</id>
+        <version>$version$</version>
+        <title>$title$</title>
+        <authors>$authors$</authors>
+        <owners>$authors$</owners>
+        <description>$description$</description>
+        <dependencies>
+            <group targetFramework="netstandard2.0" />
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="FsMetastore.Persistence\bin\$configuration$\netstandard2.0\FsMetastore.*.dll" target="lib\netstandard2.0" />
+    </files>
+</package>

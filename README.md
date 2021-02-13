@@ -108,7 +108,7 @@ It contains 2 main tables
 
 ### FsScanStream.
 The diff format is a custom binary format that stores file system entries in a lexicographical order. See 
-[ScanDB Format](MetaStream.md) for a discussion on the options and current solutions.
+[FsScanStream Format](FsScanStream.md) for a discussion on the options and current solutions.
 
 ### Ord - Hierarchical ordering.
 The Sqlite db needs to sort files lexicographically based on their path. This is achieved by adding a 64bit int

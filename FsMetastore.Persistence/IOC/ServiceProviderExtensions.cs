@@ -2,6 +2,7 @@
 using System.Data.HashFunction.CityHash;
 using FsMetastore.Model.Batch;
 using FsMetastore.Model.Protobuf;
+using FsMetastore.Persistence.Factories;
 using FsMetastore.Persistence.IndexedData;
 using FsMetastore.Persistence.IO.Commands;
 using FsMetastore.Persistence.IO.FileBatches;
@@ -11,6 +12,7 @@ using FsMetastore.Persistence.IO.Test;
 using FsMetastore.Persistence.Meta;
 using FsMetastore.Persistence.PathHash;
 using FsMetastore.Persistence.Zipper;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
@@ -18,6 +20,14 @@ namespace FsMetastore.Persistence.IOC
 {
     public static class ServiceProviderExtensions
     {
+        public static IServiceCollection AddSqliteFsMetastore(this IServiceCollection serviceCollection, IConfiguration configuration)
+        {
+            serviceCollection.Configure<FsMetaDbOptions>(configuration.GetSection("FsMetaDb"));
+            serviceCollection.AddSingleton<IFsMetaDbContextFactory, SqliteFsMetaDbContextFactory>();
+            serviceCollection.AddSingleton<IFsMetaDbContextFactoryBuilder, SqliteFsMetaDbContextFactoryBuilder>();
+            return serviceCollection;
+        }
+        
         public static IServiceCollection AddFsMetastore(this IServiceCollection serviceCollection)
         {
             serviceCollection.AddSingleton<IBatchCommandService, BatchCommandService>();

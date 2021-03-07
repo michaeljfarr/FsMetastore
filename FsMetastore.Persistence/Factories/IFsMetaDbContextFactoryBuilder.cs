@@ -8,5 +8,6 @@ namespace FsMetastore.Persistence.Factories
     {
         IFsMetaDbContextFactory CreateForDrive(Guid driveId);
         Task<BatchSource> ReadSource(string fsMetaDbPath);
+        string PathToDriveFsMetaDb(Guid driveId);
     }
 }

@@ -25,10 +25,16 @@ namespace FsMetastore.Persistence.Factories
 
         public IFsMetaDbContextFactory CreateForDrive(Guid driveId)
         {
-            var baseFolder = Path.Combine(_config.CurrentValue.ConnectionString, driveId.ToString("N"));
+            var baseFolder = PathToDriveFsMetaDb(driveId);
             return new SqliteFsMetaDbContextFactory(baseFolder);
         }
-        
+
+        public string PathToDriveFsMetaDb(Guid driveId)
+        {
+            var baseFolder = Path.Combine(_config.CurrentValue.ConnectionString, driveId.ToString("N"));
+            return baseFolder;
+        }
+
         public async Task<BatchSource> ReadSource(string fsMetaDbPath)
         {
             var batchIoConfig = new BatchIOConfig

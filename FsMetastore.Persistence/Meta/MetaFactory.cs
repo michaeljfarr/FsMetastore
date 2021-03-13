@@ -4,7 +4,6 @@ using FsMetastore.Model;
 using FsMetastore.Model.Batch;
 using FsMetastore.Model.Items;
 using FsMetastore.Model.StorageStrategy;
-using Newtonsoft.Json.Linq;
 
 namespace FsMetastore.Persistence.Meta
 {
@@ -42,8 +41,8 @@ namespace FsMetastore.Persistence.Meta
   ""id"": ""{Guid.NewGuid()}""
 }}");
             }
-            var driveJson = JObject.Parse(File.ReadAllText(driveJsonPath));
-            var driveId = Guid.Parse(driveJson["id"].Value<string>());
+            var driveJson = System.Text.Json.JsonDocument.Parse(File.ReadAllText(driveJsonPath));
+            var driveId = driveJson.RootElement.GetProperty("id").GetGuid();
             return driveId;
         }
 
